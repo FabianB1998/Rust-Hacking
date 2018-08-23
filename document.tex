@@ -18,7 +18,7 @@
 \end{center}
 \begin{abstract}
 	\noindent
-	This document tries to give an introduction to gamehacking with Rust. It focuses on the Windows side of things, with Linux coming soon\textsuperscript{TM}
+	This document tries to give an introduction to gamehacking with Rust. It focuses on the Windows side of things, with Linux coming soon\textsuperscript{TM}.
 \end{abstract}
 
 \newpage
@@ -29,11 +29,11 @@
 To setup Rust, all you need to do is to download the \href{https://rustup.rs/}{installer} and execute it. You might want to use the nightly toolchain. Also you will need \href{https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15}{MSVC}.
 
 \subsection{Editor}
-I recommend \href{https://code.visualstudio.com/}{VSCode}. You will need the Rust (rls) Addon, also I will recommend you to install the crates Addon to check if your crates are up to date.
+I recommend \href{https://code.visualstudio.com/}{VSCode}. You will need the Rust (rls) Addon, also I recommend you to install the crates Addon to check if your crates are up to date.
 
 \section{Getting started}
 \subsection{Creating and configuring a new Project}
-The first step should be creating a new Rustproject using "cargo new project\_name". This will create a new folder with all the needed files. After that try you should configure your cargo.toml, which is the build file for Rust. Add the following text to your cargo.toml to instruct cargo to build a dll:
+The first step should be creating a new Rustproject using "cargo new project\_name". This will create a new folder with all the needed files. After that try you should configure your cargo.toml, which is the build file for Rust. Add the following text to your cargo.toml to instruct cargo to build a DLL:
 
 \begin{minted}{cfg}
 [lib]
@@ -54,7 +54,7 @@ Keep in mind to adapt the version to your needs. Another nice to have crate is l
 \newpage
 \subsection{Getting started with the code}
 
-With version 0.4.0 of chiter, which is not released at the time of me writing this, will include a macro to create an entrypoint for the dll easily, all you have to do is:
+Version 0.4.0 of chiter, which is not released at the time of me writing this, will include a macro to create an entrypoint for the dll easily, all you have to do is:
 
 \begin{minted}{rust}
 #![feature(use_extern_macros)]
