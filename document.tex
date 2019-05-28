@@ -127,11 +127,6 @@ static mut DO_EMOTE: Option<GenericDetour<extern "stdcall" fn(u8) -> bool>> = No
 
 const DO_EMOTE_OFFSET: u32 = 0xDEADBEEF;
 
-//This will the function to be executed after the hook is placed
-extern "stdcall" fn hooked_emote(data: u8) -> bool {
-	true
-}
-
 //This this the function that will be called instead of the original function
 extern "stdcall" fn hooked_emote(data: u8) -> bool {
 	println!(
@@ -154,9 +149,9 @@ fn entry_point() -> bool{
 	//Make a function pointer
 	let orig_do_emote = unsafe {  std::mem::transmute::
 		<*const usize, extern "stdcall" fn(u8) -> bool>(DO_EMOTE_OFFSET as
-		 *const usize) 
+		 *const usize)
 	};
-	
+
 	unsafe {
 	//This will place the hook, but it will be inactive
 		DO_EMOTE = Some(
@@ -164,7 +159,7 @@ fn entry_point() -> bool{
 			::new(orig_do_emote, hooked_emote).unwrap(),
 		);
 	}
-	
+
 	//Enable Hook
 	unsafe {
 		match DO_EMOTE {
@@ -173,14 +168,14 @@ fn entry_point() -> bool{
 			None => println!("Could not enable execute hook"),
 		}
 	}
-	
+
 	unsafe {
 	//This will call the original function, all calls to
 	//orig_do_emote will now result in hooked_emote being called
 		match DO_EMOTE {
 			Some(ref mut hook) => hook.call(data),
 			None => {println!("Could not invoke hook"); false},
-		}	
+		}
 	}
 }
 \end{minted}
